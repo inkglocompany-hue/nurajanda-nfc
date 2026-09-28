@@ -158,6 +158,10 @@ header{
 .hero-art{position:relative;min-height:470px;display:flex;align-items:center;justify-content:center}
 .hero-banner{width:100%;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 80px rgba(0,0,0,.6);background:#111}
 .hero-banner img{width:100%;height:auto;display:block}
+.image-error-fallback{display:none;min-height:470px;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#fff;background:linear-gradient(135deg,#111,#080808);text-align:center}
+.image-error-fallback span{font-family:"Playfair Display",serif;font-size:28px}
+.image-error-fallback strong{font-size:12px;letter-spacing:3px;color:var(--red)}
+.hero-banner.image-error .image-error-fallback{display:flex}
 .hero-notebook{
     width:330px;height:430px;border-radius:18px;overflow:hidden;position:relative;
     transform:rotate(5deg);box-shadow:0 30px 80px rgba(0,0,0,.65);
@@ -532,7 +536,11 @@ NFC Teknolojisini Keşfet →
 <div class="hero-art">
     <div class="nfc-floating"><b>◉</b> NFC DOKUN · KEŞFET</div>
     <div class="hero-banner">
-        <img src="./assets/nfc-hero-user.jpg" alt="Nur Ajanda NFC defter ve telefon deneyimi">
+        <img src="./assets/nfc-hero-user.jpg?v=2" alt="Nur Ajanda NFC defter ve telefon deneyimi" onerror="this.style.display='none';this.parentElement.classList.add('image-error')">
+        <div class="image-error-fallback">
+            <span>Nur Ajanda</span>
+            <strong>NFC DİJİTAL DENEYİM</strong>
+        </div>
     </div>
 </div>
 
