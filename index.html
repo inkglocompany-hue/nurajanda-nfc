@@ -157,7 +157,65 @@ header{
 /* HERO NFC VISUAL */
 .hero-art{position:relative;min-height:470px;display:flex;align-items:center;justify-content:center}
 .hero-banner{width:100%;border-radius:24px;overflow:hidden;border:1px solid rgba(255,255,255,.12);box-shadow:0 30px 80px rgba(0,0,0,.6);background:#111}
+.hero-banner{position:relative}
 .hero-banner img{width:100%;height:auto;display:block}
+.nfc-pulse{
+    position:absolute;
+    top:18px;
+    right:18px;
+    z-index:8;
+    width:72px;
+    height:72px;
+    border-radius:50%;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:rgba(8,8,8,.72);
+    border:1px solid rgba(255,255,255,.22);
+    box-shadow:0 8px 28px rgba(0,0,0,.42);
+    backdrop-filter:blur(8px);
+}
+.nfc-pulse span{
+    position:relative;
+    z-index:3;
+    font-size:11px;
+    font-weight:800;
+    letter-spacing:1.5px;
+    color:#fff;
+}
+.nfc-pulse:before,
+.nfc-pulse:after{
+    content:"";
+    position:absolute;
+    border:2px solid var(--red);
+    border-left-color:transparent;
+    border-bottom-color:transparent;
+    border-radius:50%;
+    transform:rotate(-45deg);
+    animation:nfcPulse 1.8s ease-out infinite;
+}
+.nfc-pulse:before{width:28px;height:28px}
+.nfc-pulse:after{width:48px;height:48px;opacity:.72;animation-delay:.45s}
+.nfc-pulse i{
+    position:absolute;
+    width:7px;
+    height:7px;
+    border-radius:50%;
+    background:var(--red);
+    box-shadow:0 0 14px rgba(200,16,46,.95);
+    animation:nfcDot 1.8s ease-in-out infinite;
+}
+@keyframes nfcPulse{
+    0%{opacity:.2;transform:rotate(-45deg) scale(.82)}
+    35%{opacity:1}
+    100%{opacity:0;transform:rotate(-45deg) scale(1.08)}
+}
+@keyframes nfcDot{
+    0%,100%{transform:scale(.75);opacity:.65}
+    50%{transform:scale(1.35);opacity:1}
+}
+.card-image-link{display:block;width:100%;height:100%;cursor:pointer}
+.card-image-link:focus-visible{outline:2px solid var(--red);outline-offset:-2px}
 .image-error-fallback{display:none;min-height:470px;align-items:center;justify-content:center;flex-direction:column;gap:8px;color:#fff;background:linear-gradient(135deg,#111,#080808);text-align:center}
 .image-error-fallback span{font-family:"Playfair Display",serif;font-size:28px}
 .image-error-fallback strong{font-size:12px;letter-spacing:3px;color:var(--red)}
@@ -447,6 +505,9 @@ footer{background:#050505;color:#fff;border-top:1px solid rgba(255,255,255,.08)}
 }
 
 @media(max-width:600px){
+    .nfc-pulse{top:12px;right:12px;width:62px;height:62px}
+    .nfc-pulse:before{width:24px;height:24px}
+    .nfc-pulse:after{width:42px;height:42px}
     .nav{min-height:76px;padding:9px 16px}
     .logo{width:175px;max-height:54px}
     .nav-icons{display:none}
@@ -536,6 +597,7 @@ NFC Teknolojisini Keşfet →
 <div class="hero-art">
     <div class="nfc-floating"><b>◉</b> NFC DOKUN · KEŞFET</div>
     <div class="hero-banner">
+        <div class="nfc-pulse" aria-label="NFC ile keşfet"><i></i><span>NFC</span></div>
         <img src="./assets/nfc-hero-user.jpg?v=2" alt="Nur Ajanda NFC defter ve telefon deneyimi" onerror="this.style.display='none';this.parentElement.classList.add('image-error')">
         <div class="image-error-fallback">
             <span>Nur Ajanda</span>
@@ -578,7 +640,9 @@ Dört özel tasarım. Her biri kendi hikâyesi, üretim süreci ve NFC deneyimiy
 <div class="card">
 
 <div class="card-image">
-<img src="https://img.youtube.com/vi/9JiV3XFngDs/hqdefault.jpg">
+<a href="?urun=badem" class="card-image-link" aria-label="Badem Ağacı detayını aç">
+<img src="https://img.youtube.com/vi/9JiV3XFngDs/hqdefault.jpg" alt="Badem Ağacı NFC defter">
+</a>
 </div>
 
 <div class="card-content">
@@ -607,7 +671,9 @@ Doğanın narinliği lazer uygulamasıyla yeniden yorumlanıyor.
 <div class="card">
 
 <div class="card-image">
-<img src="https://img.youtube.com/vi/ZI5VZV126b4/hqdefault.jpg">
+<a href="?urun=sunflower" class="card-image-link" aria-label="Ayçiçekleri detayını aç">
+<img src="https://img.youtube.com/vi/ZI5VZV126b4/hqdefault.jpg" alt="Ayçiçekleri NFC defter">
+</a>
 </div>
 
 <div class="card-content">
@@ -636,7 +702,9 @@ enerjik ve canlı bir tasarım.
 <div class="card">
 
 <div class="card-image">
-<img src="https://img.youtube.com/vi/qkjeywzHg-8/hqdefault.jpg">
+<a href="?urun=roses" class="card-image-link" aria-label="Beyaz Güller detayını aç">
+<img src="https://img.youtube.com/vi/qkjeywzHg-8/hqdefault.jpg" alt="Beyaz Güller NFC defter">
+</a>
 </div>
 
 <div class="card-content">
@@ -665,7 +733,9 @@ zamansız bir tasarım.
 <div class="card">
 
 <div class="card-image">
-<img src="https://img.youtube.com/vi/ITvpm2EunJA/hqdefault.jpg">
+<a href="?urun=starry" class="card-image-link" aria-label="Yıldızlı Gece detayını aç">
+<img src="https://img.youtube.com/vi/ITvpm2EunJA/hqdefault.jpg" alt="Yıldızlı Gece NFC defter">
+</a>
 </div>
 
 <div class="card-content">
