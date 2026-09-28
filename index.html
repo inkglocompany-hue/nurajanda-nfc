@@ -583,10 +583,11 @@ footer{background:#050505;color:#fff;border-top:1px solid rgba(255,255,255,.08)}
 }
 .intro-nfc-mark{
     position:absolute;
-    right:-4px;
-    bottom:-2px;
-    width:58px;
-    height:58px;
+    isolation:isolate;
+    right:-24px;
+    bottom:-20px;
+    width:92px;
+    height:92px;
     border:1px solid rgba(255,255,255,.2);
     border-radius:50%;
     background:rgba(8,8,8,.84);
@@ -597,8 +598,8 @@ footer{background:#050505;color:#fff;border-top:1px solid rgba(255,255,255,.08)}
     z-index:5;
 }
 .intro-core{
-    width:6px;
-    height:6px;
+    width:8px;
+    height:8px;
     border-radius:50%;
     background:var(--red);
     box-shadow:0 0 15px rgba(200,16,46,.9);
@@ -608,8 +609,8 @@ footer{background:#050505;color:#fff;border-top:1px solid rgba(255,255,255,.08)}
 }
 .intro-nfc-mark i{
     position:absolute;
-    width:21px;
-    height:21px;
+    width:30px;
+    height:30px;
     border:1.5px solid var(--red);
     border-left-color:transparent;
     border-bottom-color:transparent;
@@ -619,8 +620,25 @@ footer{background:#050505;color:#fff;border-top:1px solid rgba(255,255,255,.08)}
     animation:introWave 1.9s ease-out infinite;
 }
 .intro-nfc-mark i:nth-child(2){animation-delay:.15s}
-.intro-nfc-mark i:nth-child(3){width:38px;height:38px;animation-delay:.48s}
-.intro-nfc-mark i:nth-child(4){width:50px;height:50px;animation-delay:.81s}
+.intro-nfc-mark i:nth-child(3){width:52px;height:52px;animation-delay:.48s}
+.intro-nfc-mark i:nth-child(4){width:72px;height:72px;animation-delay:.81s}
+.intro-nfc-mark::before{
+    content:"";
+    position:absolute;
+    inset:8px;
+    border-radius:50%;
+    border:1px dashed rgba(200,16,46,.28);
+    animation:introRotate 5s linear infinite;
+}
+.intro-nfc-mark::after{
+    content:"";
+    position:absolute;
+    inset:-9px;
+    border-radius:50%;
+    border:1px solid rgba(200,16,46,.10);
+    box-shadow:0 0 28px rgba(200,16,46,.10);
+    animation:introHalo 2.2s ease-in-out infinite;
+}
 .intro-title{
     color:#fff;
     font-size:12px;
@@ -672,13 +690,15 @@ footer{background:#050505;color:#fff;border-top:1px solid rgba(255,255,255,.08)}
     0%,100%{transform:scale(.8);opacity:.7}
     50%{transform:scale(1.3);opacity:1}
 }
+@keyframes introRotate{to{transform:rotate(360deg)}}
+@keyframes introHalo{0%,100%{transform:scale(.92);opacity:.35}50%{transform:scale(1.08);opacity:1}}
 @keyframes introProgress{
     to{transform:translateX(0)}
 }
 @media(max-width:600px){
     .intro-logo-wrap{width:210px;height:115px}
     .intro-logo{width:185px}
-    .intro-nfc-mark{width:52px;height:52px}
+    .intro-nfc-mark{width:76px;height:76px;right:-16px;bottom:-14px}
     .intro-title{font-size:10px;letter-spacing:3px}
     .intro-subtitle{font-size:10px}
 }
