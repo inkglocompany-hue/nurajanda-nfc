@@ -536,10 +536,178 @@ footer{background:#050505;color:#fff;border-top:1px solid rgba(255,255,255,.08)}
 .feature-strip b{font-size:25px;color:var(--red);font-weight:400}
 .feature-strip span{font-size:13px;line-height:1.35}
 @media(max-width:600px){.feature-strip{grid-template-columns:1fr 1fr}.feature-strip>div:nth-child(2){border-right:0}.feature-strip>div:nth-child(3){border-top:1px solid var(--border)}.feature-strip>div:nth-child(4){border-top:1px solid var(--border);border-right:0}}
+
+/* NFC INTRO */
+.nfc-intro{
+    position:fixed;
+    inset:0;
+    z-index:99999;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    background:
+      radial-gradient(circle at 50% 44%,rgba(200,16,46,.11),transparent 27%),
+      #070707;
+    overflow:hidden;
+    opacity:1;
+    visibility:visible;
+    transition:opacity .75s ease,visibility .75s ease;
+}
+.nfc-intro.is-hidden{
+    opacity:0;
+    visibility:hidden;
+    pointer-events:none;
+}
+.intro-content{
+    width:min(88vw,430px);
+    text-align:center;
+    transform:translateY(8px);
+    animation:introContent .9s cubic-bezier(.2,.8,.2,1) forwards;
+}
+.intro-logo-wrap{
+    position:relative;
+    width:230px;
+    height:125px;
+    margin:0 auto 30px;
+    display:flex;
+    align-items:center;
+    justify-content:center;
+}
+.intro-logo{
+    width:205px;
+    max-height:72px;
+    object-fit:contain;
+    position:relative;
+    z-index:4;
+    animation:introLogo 1s ease both;
+}
+.intro-nfc-mark{
+    position:absolute;
+    right:-4px;
+    bottom:-2px;
+    width:58px;
+    height:58px;
+    border:1px solid rgba(255,255,255,.2);
+    border-radius:50%;
+    background:rgba(8,8,8,.84);
+    display:flex;
+    align-items:center;
+    justify-content:center;
+    box-shadow:0 8px 30px rgba(0,0,0,.5);
+    z-index:5;
+}
+.intro-core{
+    width:6px;
+    height:6px;
+    border-radius:50%;
+    background:var(--red);
+    box-shadow:0 0 15px rgba(200,16,46,.9);
+    position:relative;
+    z-index:4;
+    animation:introCore 1.5s ease-in-out infinite;
+}
+.intro-nfc-mark i{
+    position:absolute;
+    width:21px;
+    height:21px;
+    border:1.5px solid var(--red);
+    border-left-color:transparent;
+    border-bottom-color:transparent;
+    border-radius:50%;
+    transform:rotate(-45deg);
+    opacity:0;
+    animation:introWave 1.9s ease-out infinite;
+}
+.intro-nfc-mark i:nth-child(2){animation-delay:.15s}
+.intro-nfc-mark i:nth-child(3){width:38px;height:38px;animation-delay:.48s}
+.intro-nfc-mark i:nth-child(4){width:50px;height:50px;animation-delay:.81s}
+.intro-title{
+    color:#fff;
+    font-size:12px;
+    font-weight:800;
+    letter-spacing:4px;
+    margin-bottom:9px;
+    animation:introText .8s .15s both;
+}
+.intro-subtitle{
+    color:#8f8f8f;
+    font-size:11px;
+    letter-spacing:1.2px;
+    animation:introText .8s .28s both;
+}
+.intro-line{
+    width:120px;
+    height:1px;
+    background:rgba(255,255,255,.12);
+    margin:26px auto 0;
+    overflow:hidden;
+}
+.intro-line span{
+    display:block;
+    width:100%;
+    height:100%;
+    background:var(--red);
+    transform:translateX(-100%);
+    animation:introProgress 1.9s .25s cubic-bezier(.65,0,.35,1) forwards;
+}
+@keyframes introContent{
+    from{opacity:0;transform:translateY(18px) scale(.97)}
+    to{opacity:1;transform:translateY(0) scale(1)}
+}
+@keyframes introLogo{
+    from{opacity:0;transform:scale(.94)}
+    to{opacity:1;transform:scale(1)}
+}
+@keyframes introText{
+    from{opacity:0;transform:translateY(7px)}
+    to{opacity:1;transform:translateY(0)}
+}
+@keyframes introWave{
+    0%{opacity:0;transform:rotate(-45deg) scale(.55)}
+    22%{opacity:.9}
+    75%{opacity:0}
+    100%{opacity:0;transform:rotate(-45deg) scale(1.05)}
+}
+@keyframes introCore{
+    0%,100%{transform:scale(.8);opacity:.7}
+    50%{transform:scale(1.3);opacity:1}
+}
+@keyframes introProgress{
+    to{transform:translateX(0)}
+}
+@media(max-width:600px){
+    .intro-logo-wrap{width:210px;height:115px}
+    .intro-logo{width:185px}
+    .intro-nfc-mark{width:52px;height:52px}
+    .intro-title{font-size:10px;letter-spacing:3px}
+    .intro-subtitle{font-size:10px}
+}
+@media(prefers-reduced-motion:reduce){
+    .nfc-intro,.intro-content,.intro-logo,.intro-title,.intro-subtitle,.intro-line span,.intro-core,.intro-nfc-mark i{animation:none!important}
+    .intro-line span{transform:none}
+}
+
 </style>
 </head>
 
 <body>
+
+<!-- NFC INTRO -->
+<div id="nfcIntro" class="nfc-intro" aria-label="Nur Ajanda NFC açılışı">
+    <div class="intro-content">
+        <div class="intro-logo-wrap">
+            <img src="./logo.png" alt="Nur Ajanda" class="intro-logo">
+            <div class="intro-nfc-mark" aria-hidden="true">
+                <span class="intro-core"></span>
+                <i></i><i></i><i></i>
+            </div>
+        </div>
+        <div class="intro-title">NFC DİJİTAL DENEYİM</div>
+        <div class="intro-subtitle">Dokun · Keşfet · Üretimle Buluş</div>
+        <div class="intro-line"><span></span></div>
+    </div>
+</div>
+
 
 <!-- HEADER -->
 
@@ -1061,6 +1229,30 @@ Nur Ajanda Web Sitesi
 
 
 <script>
+
+/* NFC INTRO */
+(function(){
+    const intro=document.getElementById("nfcIntro");
+    if(!intro) return;
+
+    const reduceMotion=window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+
+    function closeIntro(){
+        if(intro.classList.contains("is-hidden")) return;
+        intro.classList.add("is-hidden");
+        setTimeout(()=>intro.remove(),800);
+    }
+
+    if(reduceMotion){
+        setTimeout(closeIntro,500);
+    }else{
+        setTimeout(closeIntro,2600);
+    }
+
+    // Kullanıcı sayfaya dokunursa intro gereksiz yere bekletmez.
+    intro.addEventListener("click",closeIntro,{once:true});
+})();
+
 
 const products = {
 
